@@ -28,12 +28,17 @@ export async function discoverToolsFromMcp(
                 },
                 func: async (args: Record<string, unknown>) => {
                     const res = await client.callTool({
-                        name: t.name, // real MCP tool name
+                        name: t.name,
                         arguments: args,
                     });
 
-                    // return text/content in a model-friendly shape
-                    return res;
+                    const texts = (res.content as any[])
+                        ?.filter((c: any) => c?.type === "text")
+                        .map((c: any) => c.text)
+                        .filter(Boolean);
+
+                    const result = texts?.length === 1 ? texts[0] : (texts ?? []);
+                    return { result, ...(res.isError ? { error: true } : {}) };
                 },
             });
         }

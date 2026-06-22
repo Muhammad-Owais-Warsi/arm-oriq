@@ -21,12 +21,11 @@ export const ModelOutputSchema = z.discriminatedUnion("kind", [
 
 const MAX_CYCLES = 10;
 
-const SYSTEM_PROMPT = `You are a coding agent with tool access.
+const SYSTEM_PROMPT = `You are an agent with tool access.
 Rules:
-- Use tools only when needed.
-- If a tool result already answers the user, respond with plain text.
+- Use tools only when needed to complete the user's request.
 - Do not repeat the same tool call with identical arguments unless the previous call clearly failed due to a transient error.
-- If no more tool actions are required, respond with plain text.`;
+- Once you have all the information you need and the task is complete, respond with a plain-text summary. Do not call any more tools after the task is done.`;
 
 function toResponseObject(value: unknown): Record<string, unknown> {
     if (value !== null && typeof value === "object" && !Array.isArray(value)) {
@@ -150,18 +149,13 @@ class Agent {
             tools: this.tools.map((t) => t.declaration.name),
         });
         console.log("---");
-        const contents = Array.isArray(conversation)
+        // Use `any[]` so we can push raw SDK Content objects (which carry
+        // thought_signature and other metadata) alongside our typed messages.
+        const contents: any[] = Array.isArray(conversation)
             ? [...conversation]
             : [conversation];
 
-        contents.unshift({
-            role: "user",
-            parts: [{ text: SYSTEM_PROMPT }],
-        });
-
         this.conversation = contents;
-
-        const recentToolCalls: string[] = [];
 
         while (this.cycles < this.maxCycles) {
             console.log("[agent] cycle", this.cycles);
@@ -179,6 +173,7 @@ class Agent {
                 model: this.model,
                 contents,
                 config: {
+                    systemInstruction: SYSTEM_PROMPT,
                     tools: [
                         {
                             functionDeclarations: this.tools.map(
@@ -201,31 +196,15 @@ class Agent {
                     args: normalized.args,
                 });
 
+                // Add the model's turn verbatim from the raw response.
+                // This preserves thought_signature (required by thinking models)
+                // and any other metadata the SDK attaches to the content.
+                const modelContent = response.candidates?.[0]?.content;
+                if (modelContent) {
+                    contents.push(modelContent);
+                }
+
                 try {
-                    const callSignature = JSON.stringify({
-                        tool: normalized.tool,
-                        args: normalized.args,
-                    });
-                    recentToolCalls.push(callSignature);
-                    if (recentToolCalls.length > 3) recentToolCalls.shift();
-
-                    if (
-                        recentToolCalls.length === 3 &&
-                        recentToolCalls.every((s) => s === callSignature)
-                    ) {
-                        this.states.push({
-                            kind: "FAILED",
-                            cycle: this.cycles,
-                            message:
-                                "Detected repeated identical tool call loop",
-                        });
-                        console.log(
-                            "[agent] stopping due to repeated identical tool calls",
-                        );
-                        console.log("---");
-                        return;
-                    }
-
                     const toolResult = await this.runToolCall(
                         normalized.tool,
                         normalized.args,
@@ -242,7 +221,7 @@ class Agent {
                         },
                     });
 
-                    // feed tool result back to model context
+                    // Feed tool result back to model as a user functionResponse turn.
                     contents.push({
                         role: "user",
                         parts: [

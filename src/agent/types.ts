@@ -22,6 +22,12 @@ type Conversation = {
     parts: Array<
         | { text: string }
         | {
+              functionCall: {
+                  name: string;
+                  args: Record<string, unknown>;
+              };
+          }
+        | {
               functionResponse: {
                   name: string;
                   response: Record<string, unknown>;
