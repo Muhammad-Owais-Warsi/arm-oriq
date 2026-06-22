@@ -1,0 +1,22 @@
+{
+    "name": "armiq",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build:mcp": "tsc -p tsconfig.build.json",
+        "start:mcp:custom": "node dist/mcp/server.js"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^6.0.3"
+    },
+    "dependencies": {
+        "@google/genai": "^2.9.0",
+        "@modelcontextprotocol/sdk": "^1.29.0",
+        "install": "^0.13.0",
+        "npm": "^11.17.0"
+    }
+}
