@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 type State =
     | { kind: "START"; cycle: number }
     | { kind: "TEXT_RESPONSE"; cycle: number; message: string }
@@ -36,4 +38,19 @@ type Conversation = {
     >;
 };
 
+export const ModelOutputSchema = z.discriminatedUnion("kind", [
+    z.object({
+        kind: z.literal("TOOL_REQUEST"),
+        tool: z.string().min(1),
+        args: z.record(z.string(), z.unknown()).default({}),
+    }),
+    z.object({
+        kind: z.literal("TEXT_RESPONSE"),
+        message: z.string().min(1),
+    }),
+    z.object({
+        kind: z.literal("END"),
+        message: z.string().min(1).optional(),
+    }),
+]);
 export type { State, NormalizedResponse, Conversation };

@@ -1,31 +1,39 @@
 import { GeminiLayer } from "./ai";
 import type { Tool } from "../tools";
-import { z } from "zod";
 import type { NormalizedResponse, State, Conversation } from "./types";
-
-export const ModelOutputSchema = z.discriminatedUnion("kind", [
-    z.object({
-        kind: z.literal("TOOL_REQUEST"),
-        tool: z.string().min(1),
-        args: z.record(z.string(), z.unknown()).default({}),
-    }),
-    z.object({
-        kind: z.literal("TEXT_RESPONSE"),
-        message: z.string().min(1),
-    }),
-    z.object({
-        kind: z.literal("END"),
-        message: z.string().min(1).optional(),
-    }),
-]);
+import { evaluatePolicy } from "../policy/engine";
+import {
+    clearHumanApproval,
+    getHumanApproval,
+    getPolicySnapshot,
+    updateHumanApproval,
+} from "../policy/policy";
+import { buildSystemPrompt } from "./prompt";
+import { ModelOutputSchema } from "./types";
 
 const MAX_CYCLES = 10;
 
-const SYSTEM_PROMPT = `You are an agent with tool access.
-Rules:
-- Use tools only when needed to complete the user's request.
-- Do not repeat the same tool call with identical arguments unless the previous call clearly failed due to a transient error.
-- Once you have all the information you need and the task is complete, respond with a plain-text summary. Do not call any more tools after the task is done.`;
+async function runHumanApproval(toolName: string, rl: any) {
+    const decision = (
+        await rl.question(`Approval required for ${toolName}. Allow? (y/n): `)
+    )
+        .trim()
+        .toLowerCase();
+
+    if (decision === "y" || decision === "yes") {
+        return "ALLOW";
+    }
+
+    if (decision === "n" || decision === "no") {
+        return "DENY";
+    }
+
+    return undefined;
+}
+
+function isFinishToolName(toolName: string): boolean {
+    return toolName.split("__").pop() === "finish_task";
+}
 
 function toResponseObject(value: unknown): Record<string, unknown> {
     if (value !== null && typeof value === "object" && !Array.isArray(value)) {
@@ -139,7 +147,13 @@ class Agent {
         return await tool.func(args);
     }
 
-    async agentLoop(conversation: Conversation | Conversation[]) {
+    async agentLoop(
+        conversation: Conversation | Conversation[],
+        opts?: {
+            conversationId?: string;
+            rl: any;
+        },
+    ) {
         this.cycles = 0;
         this.states = [];
 
@@ -156,6 +170,11 @@ class Agent {
             : [conversation];
 
         this.conversation = contents;
+        const systemPrompt = buildSystemPrompt();
+        const conversationId =
+            opts?.conversationId && opts.conversationId.trim().length > 0
+                ? opts.conversationId
+                : "conv-default";
 
         while (this.cycles < this.maxCycles) {
             console.log("[agent] cycle", this.cycles);
@@ -173,7 +192,7 @@ class Agent {
                 model: this.model,
                 contents,
                 config: {
-                    systemInstruction: SYSTEM_PROMPT,
+                    systemInstruction: systemPrompt,
                     tools: [
                         {
                             functionDeclarations: this.tools.map(
@@ -189,6 +208,7 @@ class Agent {
             console.log("---");
 
             if (normalized.kind === "TOOL_REQUEST") {
+                const isFinishTool = isFinishToolName(normalized.tool);
                 this.states.push({
                     kind: "TOOL_REQUEST",
                     cycle: this.cycles,
@@ -196,19 +216,119 @@ class Agent {
                     args: normalized.args,
                 });
 
-                // Add the model's turn verbatim from the raw response.
-                // This preserves thought_signature (required by thinking models)
-                // and any other metadata the SDK attaches to the content.
                 const modelContent = response.candidates?.[0]?.content;
                 if (modelContent) {
                     contents.push(modelContent);
                 }
 
                 try {
+                    const { toolRules, fileRules } = getPolicySnapshot();
+                    const decision = evaluatePolicy(toolRules, fileRules, {
+                        conversationId,
+                        toolName: normalized.tool,
+                        args: normalized.args,
+                    });
+
+                    let approval = getHumanApproval(
+                        conversationId,
+                        normalized.tool,
+                    );
+
+                    if (decision.kind === "REQUIRE_APPROVAL" && !approval) {
+                        const userDecision = await runHumanApproval(
+                            normalized.tool,
+                            opts?.rl,
+                        );
+
+                        if (
+                            userDecision === "ALLOW" ||
+                            userDecision === "DENY"
+                        ) {
+                            updateHumanApproval(
+                                userDecision,
+                                conversationId,
+                                normalized.tool,
+                            );
+                            approval = getHumanApproval(
+                                conversationId,
+                                normalized.tool,
+                            );
+                        }
+                    }
+
+                    const effectiveDecision =
+                        decision.kind === "REQUIRE_APPROVAL" &&
+                        approval?.status === "ALLOW"
+                            ? { ...decision, kind: "ALLOW" as const }
+                            : decision.kind === "REQUIRE_APPROVAL" &&
+                                approval?.status === "DENY"
+                              ? {
+                                    ...decision,
+                                    kind: "DENY" as const,
+                                    reason: "Human denied this tool call",
+                                }
+                              : decision;
+
+                    if (effectiveDecision.kind !== "ALLOW") {
+                        const blockedResult = {
+                            error: true,
+                            policy: {
+                                decision: effectiveDecision.kind,
+                                reason: effectiveDecision.reason,
+                                matchedRuleId: effectiveDecision.matchedRuleId,
+                                approvalRequired:
+                                    effectiveDecision.kind ===
+                                    "REQUIRE_APPROVAL",
+                                conversationId,
+                                toolName: normalized.tool,
+                            },
+                        };
+
+                        this.states.push({
+                            kind: "TOOL_OUTPUT",
+                            cycle: this.cycles,
+                            results: {
+                                tool: normalized.tool,
+                                output: blockedResult,
+                            },
+                        });
+
+                        contents.push({
+                            role: "user",
+                            parts: [
+                                {
+                                    functionResponse: {
+                                        name: normalized.tool,
+                                        response:
+                                            toResponseObject(blockedResult),
+                                    },
+                                },
+                            ],
+                        });
+
+                        this.conversation = contents;
+                        console.log(
+                            `[agent] tool blocked by policy (${effectiveDecision.kind})`,
+                            normalized.tool,
+                        );
+                        console.log("---");
+                        this.cycles += 1;
+                        continue;
+                    }
+
                     const toolResult = await this.runToolCall(
                         normalized.tool,
                         normalized.args,
                     );
+
+                    // Consume ALLOW approval once used, so approval stays per-conversation
+                    // and per-request action, not a permanent bypass.
+                    if (
+                        decision.kind === "REQUIRE_APPROVAL" &&
+                        approval?.status === "ALLOW"
+                    ) {
+                        clearHumanApproval(conversationId, normalized.tool);
+                    }
                     console.log("[agent] tool executed", normalized.tool);
                     console.log("---");
 
@@ -220,6 +340,23 @@ class Agent {
                             output: toolResult,
                         },
                     });
+
+                    if (isFinishTool) {
+                        const message =
+                            typeof normalized.args.message === "string" &&
+                            normalized.args.message.trim().length > 0
+                                ? normalized.args.message.trim()
+                                : "Task completed.";
+                        this.states.push({
+                            kind: "END",
+                            cycle: this.cycles,
+                            message,
+                        });
+                        console.log("[agent] finish_task called; ending loop");
+                        console.log("[states]", this.states);
+                        console.log("---");
+                        return;
+                    }
 
                     // Feed tool result back to model as a user functionResponse turn.
                     contents.push({

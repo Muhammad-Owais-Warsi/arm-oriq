@@ -1,0 +1,29 @@
+{
+    "toolRules": [
+        {
+            "id": "deny-delete",
+            "enabled": true,
+            "priority": 100,
+            "toolPattern": "custom__delete_note",
+            "action": "DENY",
+            "reason": "Delete is blocked"
+        },
+        {
+            "id": "approval-create",
+            "enabled": true,
+            "priority": 90,
+            "toolPattern": "custom__create_note",
+            "action": "REQUIRE_APPROVAL",
+            "reason": "Needs human approval"
+        }
+    ],
+    "fileRules": [
+        {
+            "name": "sandbox-only",
+            "conditions": {
+                "maxLength": 200,
+                "argPathPrefix": "/sandbox/"
+            }
+        }
+    ]
+}

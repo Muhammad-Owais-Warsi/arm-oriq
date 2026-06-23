@@ -72,6 +72,18 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
                 additionalProperties: false,
             },
         },
+        {
+            name: "finish_task",
+            description:
+                "Signal that the agent has completed the task and should stop",
+            inputSchema: {
+                type: "object",
+                properties: {
+                    message: { type: "string" },
+                },
+                additionalProperties: false,
+            },
+        },
     ],
 }));
 
@@ -124,6 +136,18 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
             return {
                 content: [
                     { type: "text", text: JSON.stringify([...notes.values()]) },
+                ],
+            };
+        }
+
+        if (name === "finish_task") {
+            const { message } = args as Record<string, string>;
+            return {
+                content: [
+                    {
+                        type: "text",
+                        text: message?.trim() || "Task completed.",
+                    },
                 ],
             };
         }

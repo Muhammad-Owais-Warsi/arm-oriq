@@ -8,7 +8,8 @@
         "start:mcp:custom": "node dist/mcp/server.js"
     },
     "devDependencies": {
-        "@types/bun": "latest"
+        "@types/bun": "latest",
+        "@types/node": "^26.0.0"
     },
     "peerDependencies": {
         "typescript": "^6.0.3"

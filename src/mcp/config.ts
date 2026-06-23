@@ -1,8 +1,17 @@
+type HeaderMap = Record<string, string>;
+
 export type McpServerConfig =
+    | {
+          id: string;
+          transport: "streamable-http";
+          url: string;
+          headers?: HeaderMap;
+      }
     | {
           id: string;
           transport: "sse";
           url: string;
+          headers?: HeaderMap;
       }
     | {
           id: string;
@@ -12,6 +21,14 @@ export type McpServerConfig =
       };
 
 export const MCP_SERVERS: McpServerConfig[] = [
+    {
+        id: "external",
+        transport: "streamable-http",
+        url: "https://mcp.exa.ai/mcp",
+        headers: process.env.EXA_API_KEY
+            ? { Authorization: `Bearer ${process.env.EXA_API_KEY}` }
+            : undefined,
+    },
     {
         id: "custom",
         transport: "stdio",
