@@ -1,7 +1,11 @@
+import { watch, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import type { FileRule, ToolRule } from "./types";
 
 let toolRules: ToolRule[] = [];
 let fileRules: FileRule[] = [];
+let watcherActive = false;
 
 type HumanApprovalStatus = "ALLOW" | "DENY";
 type HumanApprovalRecord = {
@@ -77,4 +81,42 @@ export function setPolicy(next: {
 }): void {
     if (next.toolRules) toolRules = next.toolRules;
     if (next.fileRules) fileRules = next.fileRules;
+}
+
+export function reloadPolicyFromFile(filePath: string): void {
+    try {
+        const raw = readFileSync(filePath, "utf-8");
+        const parsed = JSON.parse(raw);
+        setPolicy({
+            toolRules: parsed.toolRules ?? [],
+            fileRules: parsed.fileRules ?? [],
+        });
+        console.log("[policy] reloaded from", filePath);
+    } catch (error: any) {
+        console.warn("[policy] failed to reload:", error?.message);
+    }
+}
+
+export function watchPolicyFile(relativePath?: string): void {
+    if (watcherActive) return;
+    watcherActive = true;
+
+    const __dirname = dirname(fileURLToPath(import.meta.url));
+    const filePath = relativePath
+        ? join(__dirname, relativePath)
+        : join(__dirname, "test.json");
+
+    reloadPolicyFromFile(filePath);
+
+    try {
+        watch(filePath, (event) => {
+            if (event === "change") {
+                console.log("[policy] file changed, reloading...");
+                reloadPolicyFromFile(filePath);
+            }
+        });
+        console.log("[policy] watching", filePath);
+    } catch (error: any) {
+        console.warn("[policy] failed to watch:", error?.message);
+    }
 }

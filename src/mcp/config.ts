@@ -1,3 +1,8 @@
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 type HeaderMap = Record<string, string>;
 
 export type McpServerConfig =
@@ -33,6 +38,6 @@ export const MCP_SERVERS: McpServerConfig[] = [
         id: "custom",
         transport: "stdio",
         command: "node",
-        args: ["dist/mcp/server.js"],
+        args: [join(__dirname, "../../dist/mcp/server.js")],
     },
 ];

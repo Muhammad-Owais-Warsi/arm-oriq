@@ -10,6 +10,7 @@ import {
 } from "../policy/policy";
 import { buildSystemPrompt } from "./prompt";
 import { ModelOutputSchema } from "./types";
+import { appendLog } from "../policy/logs";
 
 const MAX_CYCLES = 10;
 
@@ -284,6 +285,19 @@ class Agent {
                             },
                         };
 
+                        appendLog({
+                            timestamp: Date.now(),
+                            conversationId,
+                            cycle: this.cycles,
+                            toolName: normalized.tool,
+                            args: normalized.args,
+                            kind: effectiveDecision.kind,
+                            matchedRuleId: effectiveDecision.matchedRuleId,
+                            reason: effectiveDecision.reason,
+                            executed: false,
+                            output: blockedResult,
+                        });
+
                         this.states.push({
                             kind: "TOOL_OUTPUT",
                             cycle: this.cycles,
@@ -320,6 +334,18 @@ class Agent {
                         normalized.tool,
                         normalized.args,
                     );
+
+                    appendLog({
+                        timestamp: Date.now(),
+                        conversationId,
+                        cycle: this.cycles,
+                        toolName: normalized.tool,
+                        args: normalized.args,
+                        kind: "ALLOW",
+                        matchedRuleId: effectiveDecision.matchedRuleId,
+                        executed: true,
+                        output: toolResult,
+                    });
 
                     // Consume ALLOW approval once used, so approval stays per-conversation
                     // and per-request action, not a permanent bypass.

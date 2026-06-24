@@ -1,0 +1,729 @@
+[
+  {
+    "timestamp": 1782286058911,
+    "conversationId": "conv-1782286019832",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "title": "Random Note",
+      "body": "This is a random note created at the user's request. It doesn't contain any specific information.",
+      "id": "random_note_1"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note random_note_1"
+    }
+  },
+  {
+    "timestamp": 1782286060644,
+    "conversationId": "conv-1782286019832",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Created a random note titled \"Random Note\"."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Created a random note titled \"Random Note\"."
+    }
+  },
+  {
+    "timestamp": 1782286096232,
+    "conversationId": "conv-1782286019832",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "random_note_1"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "r-1782284454225-wq",
+    "reason": "Blocked by policy",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Blocked by policy",
+        "matchedRuleId": "r-1782284454225-wq",
+        "approvalRequired": false,
+        "conversationId": "conv-1782286019832",
+        "toolName": "custom__delete_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782286097029,
+    "conversationId": "conv-1782286019832",
+    "cycle": 1,
+    "toolName": "custom__list_notes",
+    "args": {},
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "[{\"id\":\"random_note_1\",\"title\":\"Random Note\",\"body\":\"This is a random note created at the user's request. It doesn't contain any specific information.\"}]"
+    }
+  },
+  {
+    "timestamp": 1782286117753,
+    "conversationId": "conv-1782286019832",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "random_note_1"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "r-1782284454225-wq",
+    "reason": "Blocked by policy",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Blocked by policy",
+        "matchedRuleId": "r-1782284454225-wq",
+        "approvalRequired": false,
+        "conversationId": "conv-1782286019832",
+        "toolName": "custom__delete_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782286132502,
+    "conversationId": "conv-1782286019832",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "random_note_1"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "r-1782284454225-wq",
+    "executed": true,
+    "output": {
+      "result": "deleted note random_note_1"
+    }
+  },
+  {
+    "timestamp": 1782286133377,
+    "conversationId": "conv-1782286019832",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Successfully deleted the note with ID \"random_note_1\"."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Successfully deleted the note with ID \"random_note_1\"."
+    }
+  },
+  {
+    "timestamp": 1782286491853,
+    "conversationId": "conv-1782286443805",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "body": "This is a new note.",
+      "title": "My First Note",
+      "id": "note_1"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note note_1"
+    }
+  },
+  {
+    "timestamp": 1782286492978,
+    "conversationId": "conv-1782286443805",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "I have successfully created a note for you with the ID 'note_1' and the title 'My First Note'."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "I have successfully created a note for you with the ID 'note_1' and the title 'My First Note'."
+    }
+  },
+  {
+    "timestamp": 1782286813914,
+    "conversationId": "conv-1782286772670",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "title": "New Note",
+      "body": "This is a new note created for the user.",
+      "id": "note_1"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note note_1"
+    }
+  },
+  {
+    "timestamp": 1782286815100,
+    "conversationId": "conv-1782286772670",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "A new note titled \"New Note\" has been created with ID \"note_1\"."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "A new note titled \"New Note\" has been created with ID \"note_1\"."
+    }
+  },
+  {
+    "timestamp": 1782286834540,
+    "conversationId": "conv-1782286772670",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "note_1"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "r-1782284454225-wq",
+    "executed": true,
+    "output": {
+      "result": "deleted note note_1"
+    }
+  },
+  {
+    "timestamp": 1782286835308,
+    "conversationId": "conv-1782286772670",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "The note with ID \"note_1\" has been successfully deleted."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "The note with ID \"note_1\" has been successfully deleted."
+    }
+  },
+  {
+    "timestamp": 1782286853297,
+    "conversationId": "conv-1782286772670",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "body": "This is the content of the new note.",
+      "title": "Second Note",
+      "id": "note_2"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note note_2"
+    }
+  },
+  {
+    "timestamp": 1782286854171,
+    "conversationId": "conv-1782286772670",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "A new note titled \"Second Note\" has been created with ID \"note_2\"."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "A new note titled \"Second Note\" has been created with ID \"note_2\"."
+    }
+  },
+  {
+    "timestamp": 1782286865083,
+    "conversationId": "conv-1782286772670",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "note_2"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "r-1782284454225-wq",
+    "reason": "Blocked by policy",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Blocked by policy",
+        "matchedRuleId": "r-1782284454225-wq",
+        "approvalRequired": false,
+        "conversationId": "conv-1782286772670",
+        "toolName": "custom__delete_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782286865902,
+    "conversationId": "conv-1782286772670",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "I attempted to delete the note with ID \"note_2\", but the action was blocked by a security policy."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "I attempted to delete the note with ID \"note_2\", but the action was blocked by a security policy."
+    }
+  },
+  {
+    "timestamp": 1782294335136,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__list_notes",
+    "args": {},
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "[]"
+    }
+  },
+  {
+    "timestamp": 1782294349375,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "random_note_001",
+      "title": "Random Note",
+      "body": "This is a random note generated to demonstrate note-taking capabilities. Keep exploring!"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294362597,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "title": "test",
+      "body": "This is a test note.",
+      "id": "test_note_001"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294370299,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "test_note_001",
+      "body": "This is a test note.",
+      "title": "test"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294373012,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "I am unable to create notes due to persistent security policy denials. I have informed the user and offered further assistance."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "I am unable to create notes due to persistent security policy denials. I have informed the user and offered further assistance."
+    }
+  },
+  {
+    "timestamp": 1782294384355,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "body": "This is a test note created as requested.",
+      "title": "test",
+      "id": "test_note_002"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note test_note_002"
+    }
+  },
+  {
+    "timestamp": 1782294385445,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Successfully created the requested note after the user's retry."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Successfully created the requested note after the user's retry."
+    }
+  },
+  {
+    "timestamp": 1782294396162,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "note_002_second",
+      "body": "This is a second note.",
+      "title": "Second Note"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294418970,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "external__web_search_exa",
+    "args": {
+      "query": "what does tool approval required denied mean for an AI agent"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "r-1782284990979-fr",
+    "executed": true,
+    "output": {
+      "result": "Title: Agents: Tool Approvals\nURL: https://ai-sdk.dev/v7/docs/agents/tool-approvals\nPublished: N/A\nAuthor: N/A\nHighlights:\nBy default, tools with an `execute` function run automatically when the model calls them. Use `toolApproval` on `ToolLoopAgent` to review, approve, or deny selected tool calls before they execute.\n...\nEvery approval rule returns one of these statuses, either as a string or as an object with a `type` field:\n...\n- `'not-applicable'`: execute the tool normally without approval metadata. This is the default.\n- `'approved'`: record an automatic approval, then execute the tool.\n- `'denied'`: record an automatic denial and return a denied tool output.\n- `'user-approval'`: emit an approval request and wait for an explicit response.\n...\nFor automatic approvals and denials, use the object form when you want to include a reason:\n...\n```ts\ntoolApproval: {\n  deleteFile: {\n    type: 'denied',\n    reason: 'Deleting files is disabled in this workspace',\n  },\n}\n...\nApproval functions can also return `undefined`, which is treated the same as `'not-applicable'`.\n...\nagent = new\n...\nLoopAgent({\n...\n: __MODEL__,\n...\n: {\n...\nPayment: tool({\n      inputSchema: z.object({\n        amount: z.number(),\n        recipient: z.string(),\n      }),\n      execute: async ({ amount, recipient }) =>\n        processPayment({ amount, recipient }),\n    }),\n  },\n  toolApproval: {\n    processPayment: async ({ amount }, { runtimeContext }) => {\n      if (runtimeContext.role !== 'admin') {\n        return { type: 'denied', reason: 'Only admins can send payments' };\n      }\n      return amount > 1000 ? 'user-approval' : undefined;\n    },\n  },\n});\n...\nIn this example, non-admin users are denied automatically, large payments require manual approval, and smaller admin payments execute normally.\n...\nBecause `toolApproval` is an agent setting, you can also return it from `prepareCall`. This is useful when approval policy depends on call options, tenant policy, or user permissions.\n...\ncallOptionsSchema\n...\n...settings,\n...\n' },\n    },\n...\ntwo calls:\n...\nCall `agent.generate()` or `agent.\n...\n()` with `tool\n...\nthe `tool-approval-request` from the result or UI stream.\n3. Ask the user or your approval system for a decision.\n4. Add a `tool-approval-response` to the messages.\n5. Call the agent again with the updated messages.\n...\nIf approved, the tool runs on the second call. If denied, the model receives the denial and can respond without the tool result.\n...\nWhen a tool execution is denied, consider adding an instruction such as \"When\na tool execution is not approved, do not retry it\" to prevent repeated\napproval requests for the same action.\n...\nOnly call `addToolApprovalResponse` for manual approvals. Automatic approvals and denials already include approval state in the stream.\n\n---\n\nTitle: Human-in-the-loop | OpenAI Agents SDK\nURL: https://openai.github.io/openai-agents-js/guides/human-in-the-loop/\nPublished: N/A\nAuthor: N/A\nHighlights:\nThis guide covers the SDK’s approval-based human-in-the-loop flow. When a tool call requires approval, the SDK pauses the run, returns`interruptions`, and lets you resume later from the same`RunState`.\n...\nThat approval surface is run-wide, not limited to the current top-level agent. The same pattern applies when the tool belongs to the current agent, to an agent reached through a handoff, or to a nested`agent.asTool()` execution. In the nested`agent.asTool()` case, the interruption still surfaces on the outer run, so you approve or reject it on the outer`result.state` and resume the original root run.\n...\nWith`agent.asTool()`, approvals can happen at two different layers: the agent tool itself can require approval via`asTool({ needsApproval })`, and tools inside the nested agent can later raise their own approvals after the nested run starts. Both are handled through the same outer-run interruption flow.\n...\nYou can define a tool that requires approval by setting the`needsApproval` option to`true` or to an async function that returns a boolean.\n...\n1. When a tool invocation is about to execute, the SDK evaluates its approval rule (`needsApproval` or the hosted MCP equivalent).\n2. If approval is required and no decision is stored yet, the tool call does not execute. Instead, the run records a RunToolApprovalItem.\n...\n3. At the end of that turn, the run pauses and returns all pending approvals in the result`interruptions` array. This includes approvals raised inside nested`agent.asTool()` runs.\n...\n4. Resolve each pending item with`result.state.approve(interruption)` or`result.state.reject(interruption)`. Pass`{ alwaysApprove: true }` or`{ alwaysReject: true }` if the same tool should stay approved or rejected for the rest of the run. When rejecting, you can also pass`{ message: '...' }` to control the rejection text that is sent back to the model for that specific tool call.\n...\n5. Resume by passing the updated`result.state` back into`runner.run(agent, state)`, where`agent` is the original top-level agent for the run. The SDK continues from the interrupted point, including nested agent-tool executions.\n...\nYou do not need to resolve\n...\npass. If you\n...\nor rejecting only some items,\n...\ncalls can continue while\n...\ninterruptions`\n...\npause the run\n...\n- Local`shellTool()` and`applyPatchTool()`\n...\n`onApproval` to\n...\nin code.\n- Hosted MCP tools can\n...\n`requireApproval` together with`onApproval`\n...\nkind of programmatic\n...\n.\n- Plain function tools use the manual interruption flow on this page.\n...\nWhen these callbacks return a decision, the run continues without pausing for a human response. For Realtime / voice session APIs, see the approval flow in the voice agents build guide.\n\n---\n\nTitle: Agents: Policy-Based Tool Approvals\nURL: https://ai-sdk.dev/v7/docs/agents/policy-tool-approvals\nPublished: N/A\nAuthor: N/A\nHighlights:\nThe policy is consulted before every tool dispatch and maps to one of the standard approval statuses:\n...\n- `allow` runs the tool.\n- `deny` returns a denied result the model can reason about (no human needed).\n- `requires-approval` pauses the run and waits for a human `tool-approval-response`.\n- No matching rule normalizes to `not-applicable`, which the SDK treats as allow. Add `default decision := { \"decision\": \"deny\" }` to your policy to default-deny instead.\n...\nThe policy emits a decision object. `reason` is optional and is surfaced back to the model (for `deny`) or to the human approver (for `requires-approval`).\n...\n# Default to \"not-applicable\" so unmatched calls fall through.\n# Use { decision: \"deny\" } to default-deny instead.\ndefault decision := { \"decision\": \"not-applicable\" }\n...\n# Hard deny: pushes are never allowed automatically.\ndecision := { \"decision\": \"deny\", \"reason\": \"pushes require human review\" } {\n  input.tool.name == \"git\"\n  input.args.args[0] == \"push\"\n}\n...\n# Human-in-the-loop: kubectl by oncall.\ndecision := { \"decision\": \"requires-approval\", \"reason\": \"kubectl by oncall\" } {\n  input.tool.name == \"kubectl\"\n  input.runtimeContext.role == \"sre-oncall\"\n}\n...\n- If the backend errors (server unreachable, WASM fault, misbuilt bundle), `opaPolicy` returns `denied` with the error message as the reason.\n- The error never rejects out of the callback and never aborts the run.\n- A backend outage blocks the affected call rather than silently allowing it.\n- This is distinct from a rule that returns no match, which normalizes to `not-applicable` (allow). Use a `default ... deny` rule if you want unmatched calls denied too.\n...\nDo not ship a new policy straight to enforce. The first version almost always denies things you did not mean to. `shadow(approval, opts)` evaluates the policy and reports the decision via `onDecision`, but tells the SDK every call is approved until you flip `enforce: true`.\n...\ntools, toolApproval } = wrapMcpTools(\n  discovered\n...\nopaPolicy({ client, path: '\n...\n' }),\n...\n{ default: 'user-approval' }, // anything OPA does not match needs a human\n...\nuncovered tools:\n...\n- `'user-approval'` (default): require a human. Good when you trust the source but want a safety net.\n- `'denied'`: hard allowlist mode. The policy enumerates what is allowed; everything else is rejected.\n- `'approved'`: allow. Only when the discovery source is fully trusted.\n...\ndirectly. A coarse dispatcher\n...\npush`, an HTTP tool, an\n...\nproxy) lets the\n...\nbypass a per-action rule by routing through it.\n...\n- Keep the\n...\no helper rule (\n...\n- Deny anything you\n...\ninvocation. Shell input\n...\ndeny.\n-\n...\nthe model'\n...\n. For that,\n\n---\n\nTitle: Tool Approvals in TypeScript SDK - Inkeep Open Source Docs\nURL: https://docs.inkeep.com/typescript-sdk/tools/tool-approvals\nPublished: N/A\nAuthor: N/A\nHighlights:\nRequire explicit user approval before running selected tools using the TypeScript SDK.\n...\nTool approvals let you mark specific tools as “requires approval”. When the agent tries to run one, execution pauses and your client must approve or deny before the run can continue.\n...\nconst weatherAgent = agent(\"weather-forecast\")\n  .prompt(\"You help users get weather information.\")\n  .canUse(\n    tool(\"weather-mcp\").with({\n      selectedTools: [\n        \"get_current_weather\", // No approval required\n        {\n          name: \"get_weather_forecast\",\n          needsApproval: true, // Requires user approval\n        },\n      ],\n    })\n  );\n...\nWhen a tool requires approval, you’ll see a `tool-approval-request` in the stream.\n...\nWhen a user denies a tool request with a `reason`, the agent receives the denial reason as a clean, human-readable string. This allows the agent to understand why the request was denied and adapt its behavior — for example, trying a different approach based on the user's feedback.\n...\nThis is especially useful for redirecting agents. If a user\n...\na request for \"San Francisco weather\" with\n...\n\"I want Tokyo instead\", the agent can immediately act on\n...\nfeedback and fetch Tokyo weather without requiring a separate follow-up message.\n...\nYou can approve/deny via the chat endpoint (message part)\n...\n{\n  \"conversationId\n...\n\"parts\": [\n        {\n          \"type\": \"tool-get_weather_forecast\",\n          \"toolCallId\": \"call_abc123def4\n...\n6\",\n          \"state\":\n...\n\"id\": \"aitxt-call_abc123def456\",\n            \"approved\": true,\n            \"reason\": \"User confirmed\"\n          }\n        }\n      ]\n    }\n  ]\n}\n...\nOnly `state: \"approval-responded\"` triggers an approval/denial. If your client\nincludes other tool approval parts in message history (for example `state: \"approval-requested\"`), the server ignores them.\n...\nWhen you run agents in Slack (via the Inkeep Slack app), tool approvals appear as interactive messages with Approve and Deny buttons.\n...\n1. The agent requests to run a tool that requires approval\n2. Slack posts a message showing the tool name and its input parameters\n3. The user clicks Approve or Deny\n4. The agent continues based on the user's decision\n...\nOnly the user who started the conversation can approve or deny a tool request. If another user clicks the buttons, they see an error message.\n...\nIf no one responds to an approval request within the timeout period, the request expires and the message updates to show \"Expired\". The agent receives a timeout notification and can inform the user.\n...\nTool approvals in Slack require account linking. Run `/inkeep link` to connect\nyour Slack and Inkeep accounts before using agents with approval-required\ntools.\n\n---\n\nTitle: Tool Approval Flow\nURL: https://tanstack.com/ai/latest/docs/guides/tool-approval\nPublished: N/A\nAuthor: N/A\nHighlights:\nThe tool approval flow allows you to require user approval before executing sensitive tools, giving users control over actions like sending emails, making purchases, or deleting data. Tools go through these states during approval:\n...\n1. `approval-requested` - Waiting for user approval\n2. `executing` - Approved, now executing\n3. `output-available` - Execution completed\n4. `output-error` - Execution failed\n5. `cancelled` - User denied approval\n...\nWhen a tool requires approval, the typical flow is:\n...\n1. Model calls the tool\n2. Tool execution is paused\n3. User is prompted to approve or deny\n4. Tool executes (if approved) or is cancelled (if denied)\n5. Conversation continues with the result\n...\nTools can be marked as requiring approval by setting `needsApproval: true` in the definition:\n...\nOn the server, tools with `needsApproval: true` will pause execution and wait for approval:\n...\nmap((part\n...\n// Check\n...\napproval requests\n            if (\n              part.type === \"tool-call\" &&\n              part.state === \"approval-requested\" &&\n              part.approval\n            ) {\n              return (\n                <div key={part.id} className=\"approval-prompt\n...\np>App\n...\nJSON.stringify\n...\naddTool\n...\nid: part\n...\n!.id,\n                        approved: true,\n                      })\n                    }\n                  >\n...\nonClick={() =>\n                      addToolApprovalResponse({\n                        id: part.\n...\n!.id,\n                        approved: false,\n                      })\n                    }\n                  >\n...\nDeny\n                  </button>\n                </div>\n...\nparts\n          })}\n        </div>\n...\n);\n...\nClient tools can also\n...\n```typescript\n// tools/definitions.ts\nconst deleteLocalDataDef = toolDefinition({\n  name: \"delete_local_data\",\n  description: \"Delete data from local storage\",\n  inputSchema: z.object({\n    key: z.string(),\n  }),\n  outputSchema: z.object({\n    deleted: z.boolean(),\n  }),\n  needsApproval: true, // Requires approval even on client\n});\n...\nThe user will see an approval prompt showing the item, quantity, and price before the purchase is made. The tool will only execute after the user approves.\n...\n- Use approval for sensitive operations - Sending emails, making payments, deleting data\n- Show clear information - Display what the tool will do before approval\n- Provide context - Show tool arguments in a readable format\n- Handle denial gracefully - Don't break the conversation if a tool is denied\n- Timeout handling - Consider timeouts for approval requests\n\n---\n\nTitle: N/A\nURL: https://docs.convex.dev/agents/tool-approval.md\nPublished: N/A\nAuthor: N/A\nHighlights:\nTool approval lets you require human confirmation before a tool call is executed. This is useful for dangerous or irreversible operations — deleting data, spending money, sending emails — where you want a person to review the action before it happens.\n...\nTools without `needsApproval` (or with `needsApproval` returning `false`) execute immediately as usual.\n...\n1. **Save the user's message** and schedule generation.\n2. **Generate a response.** If the model calls a tool that needs approval, generation pauses and the `tool-approval-request` is persisted in the thread.\n3. **Submit an approval or denial** for each pending tool call. `approveToolCall` and `denyToolCall` work from both mutations and actions.\n4. **Continue generation** once all pending approvals have been resolved.\n...\nWhen the model calls several tools in a single step, some or all of them may require approval. **Every** pending approval must be resolved (approved or denied) before you continue generation.\n...\nIf a new generation starts while approvals are still unresolved, the unresolved approvals are **automatically denied** with the reason `\"auto-denied: new generation started\"`. This prevents broken message histories where tool calls lack results.\n...\nOn the client, use `useUIMessages` to detect pending approvals and show Approve/Deny buttons. Tool parts with `state === \"approval-requested\"` are waiting for a decision.\n...\nThe `ToolUIPart` states relevant to approval are:\n...\n| State | Meaning |\n| -------------------- | ---------------------------------------------------- |\n| `approval-requested` | Waiting for the user to approve or deny |\n| `approval-responded` | User responded; tool is being executed (if approved) |\n| `output-available` | Tool executed successfully |\n| `output-denied` | Tool was denied |\n| `output-error` | Tool execution failed |\n\n---\n\nTitle: N/A\nURL: https://tanstack.com/ai/latest/docs/tools/tool-approval\nPublished: N/A\nAuthor: N/A\nHighlights:\nflow allows you to\n...\n, or deleting data. A tool call moves through the `ToolCallState` lifecycle:\n...\n1. **`awaiting-input`** — Tool call started, no arguments yet\n2. **`input-streaming`** — Arguments arriving incrementally\n3. **`input-complete`** — All arguments received\n4. **`approval-requested`** — Waiting for user approval (only if `needsApproval: true`)\n5. **`approval-responded`** — User approved or denied\n...\nAfter `approval-responded` the call executes (if approved). Although `complete` exists in the `ToolCallState` union, the runtime never transitions the tool-call part to it — the result surfaces as a populated `part.output` plus a sibling `tool-result` part whose own state is `complete` or `error`.\n...\nWhen a tool requires approval, the typical flow is:\n...\n1. Model calls the tool\n2. Tool execution is paused\n3. User is prompted to approve or deny\n4. Tool executes (if approved) or is cancelled (if denied)\n5. Conversation continues with the result\n...\nTools can be marked as requiring approval by setting `needsApproval: true` in the definition:\n...\nOn the server, tools with `needsApproval: true` will pause execution and wait for approval:\n...\nif (\n...\npart.type ===\n...\npart.state === \"approval-\n...\napproved:\n...\naddTool\n...\n,\n...\nparts\n          })}\n...\nClient tools can also require\n...\n// tools/definitions.ts\nconst deleteLocalDataDef = toolDefinition({\n  name: \"delete_local_data\",\n  description: \"Delete data from local storage\",\n  inputSchema: z.object({\n    key: z.string(),\n  }),\n  outputSchema: z.object({\n    deleted: z.boolean(),\n  }),\n  needsApproval: true, // Requires approval even on client\n});\n...\n);\n  return { deleted: true };\n});\n...\nThe user will see an approval prompt showing the item, quantity, and price before the purchase is made. The tool will only execute after the user approves.\n...\n- **Use approval for sensitive operations** - Sending emails, making payments, deleting data\n- **Show clear information** - Display what the tool will do before approval\n- **Provide context** - Show tool arguments in a readable format\n- **Handle denial gracefully** - Don't break the conversation if a tool is denied\n- **Timeout handling** - Consider timeouts for approval requests\n\n---\n\nTitle: N/A\nURL: https://docs.timbal.ai/examples/agents/approval-required-tools\nPublished: N/A\nAuthor: N/A\nHighlights:\n# Approval-Required Tools\n...\n> Pause an agent for human approval, capture the gate, and resume with a decision — including redaction and audit fields\n...\nThis example wires up a refund tool that gates above \\$100, captures the `ApprovalEvent` mid-stream, and resumes with a decision. See the full reference in the [Human in the Loop](/human-in-the-loop) section.\n...\nrefund = Tool(\n    handler=refund_customer,\n    requires_approval=lambda amount, **_: amount > 100,\n    approval_prompt=lambda amount, customer_id: (\n        f\"Approve refunding ${amount} to {customer_id}?\"\n    ),\n    approval_redact_keys=[\"customer_id\"],\n)\n...\n## Denying With a Reason\n...\nWhen the agent calls a denied tool, Timbal converts the denial into a `ToolResultContent` so the model can react (apologize, escalate, try another path) instead of crashing:\n...\n```python theme={\"dark\"}\nresult = await agent(\n    prompt=\"Refund $250 to customer C-42\",\n    resume={\n        approval_id: ApprovalResolution(\n            approved=False,\n            reason=\"Refund exceeds policy limit.\",\n            approver_id=\"user_42\",\n        )\n    },\n).collect()\n```\n...\nFor direct tool calls (no agent), denial returns `status.reason == \"approval_denied\"` and the handler does not run.\n...\n* **Callable policy** — `requires_approval=lambda amount, **_: amount > 100` runs against the validated handler input\n...\n* **Redaction** — `approval_redact_keys` masks fields in the public approval surface; the handler still receives unredacted input\n...\n* **Audit fields** — `approver_id`, `comment`, `decided_at` persist under `span.metadata[\"approval\"][\"resolution\"]`\n...\n* **Durable resume** — pair with `JsonlTracingProvider` / `SqliteTracingProvider` and `parent_id` to span processes\n...\nresumes each gate\n\n---\n\nTitle: Human-in-the-Loop Approvals — Agent-Native\nURL: https://www.agent-native.com/docs/human-approval\nPublished: N/A\nAuthor: N/A\nHighlights:\nMost actions should just run. A few — sending an email, charging a card, deleting an account — are outward-facing and hard to undo, and you don't want the agent to do them autonomously. For those,`defineAction` has an opt-in approval gate: when the agent tries to call the action, the loop pauses, surfaces an Approve/Deny affordance to the human, and runs the action only after the human approves that specific call.\n...\n[!WARNING] Keep approvals rare. Every gated action is a hard stop in the agent loop — it interrupts the run and demands a human round-trip. Use`needsApproval` only for genuinely high-consequence, hard-to-undo, outward-facing operations. If you find yourself gating reads or routine writes, you're holding it wrong. The default is off, and almost every action should leave it off.\n...\nOne flag. With it truthy and the call unapproved, the loop stops before`run`— the model never reaches the side effect on its own.\n...\n`needsApproval: true`— always require approval.\n...\n`needsApproval: (args, ctx) => boolean | Promise `— require approval only when the predicate returns true. Gate conditionally, e.g. only for external recipients or only above a dollar threshold:\n...\nKeep the predicate pure and fast. It fails closed: if the predicate throws, the framework treats that as \"approval required\" rather than silently running a high-consequence action.\n...\nWhen the agent calls a gated action and this specific call has not already been approved, the loop does not execute`run()`. Instead it:\n...\n1. Resolves the gate. For a predicate, it calls`needsApproval(input, ctx)`; a throw is treated as \"must approve\" (fail closed).\n2. Emits a`tool_start` event (so the UI shows the call) followed immediately by an`approval_required` event, then stops the turn. The action's side effect never happens.\n...\nOn`approval_required`, the chat UI renders an Approve / Deny affordance on the paused tool call. This is wired automatically in`AssistantChat`— you don't build it per template.\n...\n- Approve re-issues the turn (an ordinary continuation message) carrying the call's key in`approvedToolCalls: [approvalKey]`. On the re-issued turn, the gate sees the key in the approved set and lets that specific call run normally.\n- Deny dismisses the affordance locally; nothing is re-issued, so the action never runs.\n...\nA gated call\n...\nthe turn before run() fires. Approval re-issues the turn\n...\nthe call's key; only then\n...\nthe side effect happen.\n...\nThe canonical (and intentionally rare) use of this gate in the framework is the Mail template's`send-email` action, which sets`needsApproval: true` so the agent can draft and queue freely but can never actually send a message without a human approving the specific send.\n\n---\n\nTitle: Manage approvals and permissions\nURL: https://code.visualstudio.com/docs/agents/approvals\nPublished: 2021-11-03T00:00:00.000Z\nAuthor: N/A\nHighlights:\n| Permission level | Description |\n| --- | --- |\n| Default Approvals (default) | Uses your configured approval settings. Tools that require approval show a confirmation dialog before they run. When in doubt, the agent asks clarifying questions. |\n| Bypass Approvals | Auto-approves all tool calls without showing confirmation dialogs. When in doubt, the agent asks clarifying questions. |\n| Autopilot | Auto-approves all tool calls without showing confirmation dialogs. When questions arise, the agent automatically responds to clarifying questions.\n...\nSome tools require your approval before they can run. This is a security measure because tools can modify files or change your environment. In addition, the data a tool returns might contain prompt injection attempts that try to manipulate the agent.\n...\nWhen a tool requires approval, a confirmation dialog appears with the tool name and its input parameters. Review this information carefully, then choose the scope of your approval: a single use, the current session, the current workspace, or all future invocations.\n...\n- Pre-approval (\"without approval\"): skip the confirmation dialog before the tool runs.\n- Post-approval (\"without reviewing result\"): skip reviewing the tool's output before it is added to the chat context. This is relevant for tools that return external data, where the content might contain prompt injection attempts.\n...\nWhen a tool asks for approval, you can choose to approve it for all future invocations, which auto-approves it from then on. For sensitive tools, you might want to remove that option so the tool always requires manual approval and can't be auto-approved by accident.\n...\nUse the chat.tools.eligibleForAutoApproval Open in VS Code Open in VS Code Insiders setting to control which tools are eligible for auto-approval. Set a tool to`false` to always require manual approval for it.\n...\nBy default, VS Code already auto-approves a set of safe commands and blocks risky ones, such as`rm` and`del`, that always require manual approval. Use the chat.tools.terminal.autoApprove\n...\nsetting to extend or override these defaults with your own allow and deny list:\n...\n- chat.tools.terminal.enableAutoApprove\n...\nauto-approval entirely, so every\n...\n- chat.tools.terminal.blockDetected\n...\niders (experimental): when set\n...\noutsideWorkspace`(default), require approval for\n...\n/tmp`\n...\nmacOS and Linux,`%TEMP%` on Windows) are exempt when session-level\n...\napproval is active.\n...\ndefine in chat.\n...\n.autoApprove\n...\neasier for an attacker to compromise the machine.\n...\nimplications. See the Security"
+    }
+  },
+  {
+    "timestamp": 1782294433569,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "note_003_approved",
+      "body": "This is a new note created following your explicit approval.",
+      "title": "New Approved Note"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294435287,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "The user attempted to approve the tool call, but the system continued to deny it. I have informed the user of the situation and concluded the task."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "The user attempted to approve the tool call, but the system continued to deny it. I have informed the user of the situation and concluded the task."
+    }
+  },
+  {
+    "timestamp": 1782294459616,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__list_notes",
+    "args": {},
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "[{\"id\":\"test_note_002\",\"title\":\"test\",\"body\":\"This is a test note created as requested.\"}]"
+    }
+  },
+  {
+    "timestamp": 1782294463084,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Listed the existing notes for the user."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Listed the existing notes for the user."
+    }
+  },
+  {
+    "timestamp": 1782294473435,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "test_note_002"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "r-1782284454225-wq",
+    "reason": "Blocked by policy",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Blocked by policy",
+        "matchedRuleId": "r-1782284454225-wq",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__delete_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294476598,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "The user attempted to delete a note, but it was blocked by the system security policy. I have informed the user."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "The user attempted to delete a note, but it was blocked by the system security policy. I have informed the user."
+    }
+  },
+  {
+    "timestamp": 1782294488526,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__delete_note",
+    "args": {
+      "id": "test_note_002"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "r-1782284454225-wq",
+    "executed": true,
+    "output": {
+      "result": "deleted note test_note_002"
+    }
+  },
+  {
+    "timestamp": 1782294494746,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Successfully deleted the note after the user's retry."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Successfully deleted the note after the user's retry."
+    }
+  },
+  {
+    "timestamp": 1782294545439,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "new_note_004",
+      "title": "New Note Attempt",
+      "body": "This is a note created after a successful retry."
+    },
+    "kind": "DENY",
+    "matchedRuleId": "approval-create",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "approval-create",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "custom__create_note"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294547595,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "The user attempted to create a note, but it was denied again by the security policy. I have informed the user and asked if there is anything else I can assist with."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "The user attempted to create a note, but it was denied again by the security policy. I have informed the user and asked if there is anything else I can assist with."
+    }
+  },
+  {
+    "timestamp": 1782294564187,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "external__web_search_exa",
+    "args": {
+      "query": "who is Owais Warsi"
+    },
+    "kind": "DENY",
+    "matchedRuleId": "r-1782284990979-fr",
+    "reason": "Human denied this tool call",
+    "executed": false,
+    "output": {
+      "error": true,
+      "policy": {
+        "decision": "DENY",
+        "reason": "Human denied this tool call",
+        "matchedRuleId": "r-1782284990979-fr",
+        "approvalRequired": false,
+        "conversationId": "conv-1782294320747",
+        "toolName": "external__web_search_exa"
+      }
+    }
+  },
+  {
+    "timestamp": 1782294566048,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "All requested tools (creating a note and web search) were blocked by the security policy. I have informed the user."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "All requested tools (creating a note and web search) were blocked by the security policy. I have informed the user."
+    }
+  },
+  {
+    "timestamp": 1782294582391,
+    "conversationId": "conv-1782294320747",
+    "cycle": 0,
+    "toolName": "external__web_search_exa",
+    "args": {
+      "query": "who is Owais Warsi"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "r-1782284990979-fr",
+    "executed": true,
+    "output": {
+      "result": "Title: Muhammad Owais Warsi\nURL: https://owais.is-a.dev/\nPublished: N/A\nAuthor: N/A\nHighlights:\nOwais\n\n# Muhammad Owais Warsi\n\nFull Stack developer.\n\n// Type this in your terminal for a quick intro.\n\nnpx mowarsi\n\n## About Me\n\nI'm currently an undergrad pursuing my Bachelors degree. From hating C.S. every second to spending hours debugging a bug.\n\nBuilding products across full stack applications, SDKs and developer tools. I also sometimes write blogs, exploring new technologies, and collaborating with others.\n\nThat's all, nothing too special. Probably building or writing while you're reading this.\n\nThanks for reading :)\n\n## Work Experience\n\n### Founding Engineering Intern\n\nCueron · Remote\n\nDec 2025 — Jun 2026\n\n## Projects\n\nSecurity layer for agents tool permissions.\n\nTech Stack: Typescript\n\nThe payment layer for modern applications.\n\nTech Stack: Typescript\n\nLaunched on Peerlist #1\n\nPostman alternative built in Rust.\n\nTech Stack: ReactJS Rust\n\nLaunched on Peerlist #2\n\nRace your friends. Type like a chimp. 1 v 1 MonkeyType.\n\nTech Stack: ReactJS ExpressJS Pusher Supabase TailwindCSS\n\nLaunched on Peerlist #3\n\nDodo Payments Rust SDK\n\nRust SDK to interact with Dodo Payments API.\n\nTech Stack: Rust\n\nA faster, simpler curl alternative — built in Rust.\n\nTech Stack: Rust\n\nLaunched on Peerlist #5\n\n## Open Source Contributions\n\nZed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.\n\nOpen source alternative to Gmail.\n\nOpen source alternative to Google Drive.\n\nContributed to the Hacktoberfest official site.\n\nOpen source alternative to Google Meet and Zoom.\n\nCollaborative website to write and run code.\n\nA security SDK for developers.\n\nHighly customizable Changelog Generator following Conventional Commit specifications.\n\nLinux Kernel Manager and Activity Monitor.\n\nPlatform to find and contribute to open source projects.\n\n---\n\nTitle: Muhammad Owais Warsi\nURL: https://linkedin.com/in/muhammad-owais-warsi\nPublished: 2026-06-12T04:40:11.000Z\nAuthor: N/A\nHighlights:\n# Muhammad Owais Warsi\n...\nChennai, Tamil Nadu\n...\nMuhammad Owais Warsi He is a computer science student from India. A developer with a keen interest in building applications for the tech world. He might be building projects or contributing to open source while you're reading this. Thanks.\n...\n### Founding Software Engineer at [Cueron Global Private Limited](https://www.linkedin.com/company/cueron)\n...\n### Bachelor of Technology - BTech, Computer science and engineering at [SRM University (Sri Ramaswamy Memorial University)](https://www.linkedin.com/school/srm-institute-of-science-and-technology)\n...\n[GitHub Profile](https://github.com/Muhammad-Owais-Warsi)\n...\nUsername: Muhammad-Owais-Warsi\n\n---\n\nTitle: Muhammad-Owais-Warsi - GitHub\nURL: https://github.com/muhammad-owais-warsi\nPublished: 2023-05-13T15:02:55.000Z\nAuthor: N/A\nHighlights:\n# User: Muhammad Owais Warsi (@Muhammad-Owais-Warsi)\n\nA developer who love perfumes\n\n- Location: India\n- Website: https://owais.is-a.dev\n- Twitter: @MO_warsi786\n- Followers: 33\n- Following: 8\n- Public Repos: 70\n- Hireable: yes\n- Joined: 2023-05-13\n\n---\n\n## Recent Activity (Mar 27, 2026 - Apr 14, 2026)\n\n- Commits: 43%\n- Pull requests: 2%\n- Issues: 36%\n\nContributed to: Muhammad-Owais-Warsi/mono, tauri-apps/tauri, Muhammad-Owais-Warsi/Muhammad-Owais-Warsi, aditya23409876543/deefake_audio, aditya23409876543/DeepGuard-, Muhammad-Owais-Warsi/iced-api, microsoft/RustTraining, zed-industries/zed, Muhammad-Owais-Warsi/zed, Muhammad-Owais-Warsi/dodopayments_rust_sdk_docs\n\n---\n\n## Top Repositories\n\n| Repository | Description | Stars | Language | Last Updated |\n| --- | --- | --- | --- | --- |\n| flux | Postman alternative built in rust | 12 | HTML | 2025-07-16 |\n| Poemify | Turn images into poems. | 8 | TypeScript | 2024-10-15 |\n| Better-Pay | The payment layer for modern applications. | 6 | TypeScript | 2025-05-21 |\n| zurl | A faster, simpler curl alternative — built in Rust. | 6 | Rust | 2025-07-19 |\n| dodpayments_rust_sdk | Unofficial rust sdk to interact with dodopayments api. | 5 | Rust | 2026-03-31 |\n| envwarden | The End of Oops-I-Committed-My-.env | 5 | JavaScript | 2025-05-28 |\n\n---\n\nTitle: OWAIS WARSI\nURL: https://linkedin.com/in/owais-warsi-b4b502307\nPublished: 2026-05-21T01:21:49.000Z\nAuthor: Exa\nHighlights:\n# OWAIS WARSI\n...\nAttended Zakir Husain College Of Engineering & Technology\n...\nChassis Team Member at [ZHCET Formula Racing (ZFR)](https://www.linkedin.com/company/zhcet-formula-racing-zfr)\n...\nAgra, Uttar Pradesh, India (IN)\n...\n500 connections • 1,654 followers\n...\nTotal Experience: 3 years and 3 months\n...\n### [ZHCET Formula Racing (ZFR)](https://www.linkedin.com/company/zhcet-formula-racing-zfr)\n...\n#### Chassis Team Member (Current)\n...\nJan 2024 - Present (2 years and 3 months) in Aligarh, Uttar Pradesh, IN\n...\nDepartment: Engineering and Technical • Level: Specialist\n...\nJan 2023 - Jan 2024 (1 year) in Aligarh, Uttar Pradesh, IN\n...\nActively contributed as a volunteer in technical and organizational activities at ZFR AMU\n...\nZHCET Formula Racing (ZFR) is a nonprofit organization. ZHCET Formula Racing (ZFR) employs 20 people (+22.7% YoY, +5 people), founded in 2013. Headquartered in Aligarh, Uttar Pradesh, India.\n...\n### [Aligarh Muslim University](https://www.linkedin.com/school/aligarh-muslim-university)\n...\n#### Bachelor of Engineering - BE Mechanical Engineering\n...\n2023 - 2027 (4 years)\n...\n#### Diploma in engineering Mechanical Engineering\n...\n2020 - 2023 (3 years)\n...\nActivity: OWAIS WARSI\n...\nActivity: OWAIS WARSI\n...\n: OWAIS WARSI\n...\n: OWAIS WARSI\n...\nOWAIS WARSI\n...\nOWAIS WARSI\n...\n: OWAIS WARSI\n...\nActivity: OWAIS WARSI\n...\n: OWAIS WARSI\n...\nSpecial thanks to Owais Warsi for his valuable\n...\nthroughout this project. Your\n...\n: OWAIS WARSI\n...\n: OWAIS WARSI\n...\nActivity: OWAIS WARSI\n...\nActivity: OWAIS WARSI liked this\n\n---\n\nTitle: Owais Warsi\nURL: https://linkedin.com/in/owais-warsi-471237363\nPublished: 2026-01-09T18:27:32.000Z\nAuthor: Exa\nHighlights:\n# Owais Warsi\n\nat [Mega Engineering](https://www.linkedin.com/company/mega-engineering)\n\nKarachi Division, Sindh, Pakistan (PK)\n\n## Experience\n\n### at [Mega Engineering](https://www.linkedin.com/company/mega-engineering) (Current)\n\nMega Engineering is a Biotechnology Research company. Mega Engineering is a leading ethanol technology provider and distillery plant manufacturer. They offer comprehensive solutions, turnkey solutions for bioethanol, and potato alcohol plants, including zero liquid discharge plants. Mega Engineering employs 66 people (+14.4% YoY, +41 people) and has an annual revenue of $5.0M-$25.0M, founded in 2010. Headquartered in India, operates in 10 countries (including Kenya, Pakistan, Sri Lanka, Dominican Republic, and Egypt).\n\n---\n\nTitle: Owais Warsi\nURL: https://linkedin.com/in/owais-warsi-58b860313\nPublished: 2026-05-01T10:31:24.000Z\nAuthor: Exa\nHighlights:\n# Owais Warsi\n\nSaddar Town, Sindh, Pakistan (PK)\n\n## Experience\n\n### at Mern Stack Developer\n\n## Education\n\n### at Siraj-ud-Daulah Govt College\n\n2021 - 2021\n\n---\n\nTitle: Muhammad Owais Warsi - Rust Package Registry - Crates.io\nURL: https://crates.io/users/Muhammad-Owais-Warsi\nPublished: 2025-04-29T00:00:00.000Z\nAuthor: N/A\nHighlights:\n» \u0000€ªªªêÿ¬v9I+@ƒGt…™Æ–\u0011‘îf\u0006î\u001e\u0019™\u0011™Q\u001e\u0019™\u0019QPà ¦&f¦nº….îá‘ÿwÕ¿çÞêžQ]ÞÆpW¼XXXØØXÕËŒêàÃ‡\u001fƒÁ`\u001cg²ª\u0006ƒÁ`0\u0018Ì¡ÎˆT”Fá°ÐN²÷\u00040åZ+âÞ! Q«:+‡¨\u0015(núŠ¢¡u\u0006P\u000eÈÛ:\u0003\u0000(5F\u000ebà>`¬hŠ]~EÕ\u0019\u0000@©1r0\\cE·\u0012wÎúHAX\u0013ÑÄŠîd\u001b‡ªÅ­\u0014˜ïd\u001b‡#FFÉU\u001e\u0004WXÐèÆïSI3‚GUÑ0X\u001fEŠ …5\u0014\u0006]EYÇ·RXSHa)Ä½ÃŠJÍ{d¯¹_t–¯ÔDÆ÷$Ž¹à¾·…3} gtq%ø]îœÂ<Ú$†<ªW|\u0012ä\u001b†Šžž^¾žž^Æt ¨1`8ª/jÛH…ù\u000e›œ;— îx£\u0010XÇ¼Ç\u0010Å»ä(c\u0004§ß,<\u0018 i§°J!Â=\u0017#ï\u0011VØË\u0010ý>öwù$D\u001eSÈ\u001bîó\u0010÷ N[ìxR1¾—îÅ\u00015æÂ*ëËuülËýAž\u000fÈ[ôyÓûA?ŒäP”4#•\u0003æÓ\u0004¹\u0017\u0003½œ\u0004qÅ:47±\u0014¯Zy\u0018˜\u0002îqç”\u0014\\\u001b¿à\u0014ß\u0017>…˜+núÂúþöø‰ç»¢—qHM ès“J!¬öu˜¤\u0010\u0003Š§Ó\u0010y”¢(ûh\u0001äæ4DÞKÓ{:Ô\u0019tÖä\u0017 I_¶-\u0016¢5…¶oR)^\u0018Œ3º/)Lþ7\u0003ÛlÊ8N58™\u0001_!ybPü\u0010`’Là\u001dæ¸åj\u0002“0ðÓw\u0017ù»ÅÛÅ_wâÒ_^¿$íž™¼¿š¿röxµ¿ßî\u001aùáëê›¶æN`_…<|×ö‹ÜÌãËñí¸|\u001b™[,v¯éøX+ÿóï“ÛÛ¿Ó‡müvŽgûã\u001fc5™|‚ÕüL¤QÒ J\u000e«¥­´Î\b\u0011@ ræ»Zsç˜Ô:EÞ(dh¢ß³\u0010¹Åòv¹àSc[ ì¸Xœ«°ð/_ãú\u0000-ÙT»Õ{»úâ>n¶|øx†×Ý‰û\u0000ÍÑt}–[­ÏÜÇM/ÞžvÛ÷ œ?Br4]lÔíþkË\u0014\u001f8[ô‹‡ü—¼p\u001f8=»ß‡ýÍÖ}€\u0014l6\u001f/ÞÏï_ÜÇÍæß\u001f™«Uï>n6ü¸\u001eß\u001e~¸›.†±½NÏðùÀÙrÓÝ|PòÙ}ÜìóÉGûþùÇû¸Ù·õãæç\u0019\u001fÜ\u0007NÐŸ<á§‚}àdyý|œ7Ââ#g yÙ¼tŸ¢û¸éuþz1ßrùk÷(c1!¿ÔzëZ»3Åòj><~Ç]!‚F\u001eÈ\u001aÈa@Õþ6‰ñ«·–·Òô\u000fN\u001aƒ¾˜\u000fûÝÇ³ö9Þºs\\Ìï?~ºüòSFõŠ P²¡Z¾V6¶ÝCË#ÏÃ\u0016UÄQÆÜ¨Hwó–G^ÑÁnÑ\u0007… P\u001ak€á÷Sÿßzè’RÐ%#¢´†+\u0019÷`;ˆƒ \u0010dD\u0011d\u0000ƒ\u0002Cà~\u000f\u0006>ÜáBøÌ·ü¡v\u0004¹(Y¼#'#‰|¶“¦µ»Â\u001aôÞúêÒx?™›Vaëqƒ©ƒWÙ\u0018>?8üÝZ‘4šX4¶Ý\u0017 …ù§ïw·Õ¤t€#ˆŠ¶\u0005À\u0017¦pyüßYÃÅØ{›L;…Z\"~¿šK“7ýáÌñ¶•¦ŸÂÉ±{ÑúÁz¿?\u0002\u0019AY;\u0006PrDØ!ìÐ#\u0018\u001b7ª \u0003ß¨,o!\u000e\bŽ÷XÀ½B\u001e\u00104\u001f\u0011BòU›45\u0018wÖ\u0016üp_Z\u0003;ëÇ\u0000Ü´u\"ø.¸GHAš\u001e¸äòhó–G„ÆÛ]@_ÀM—\u0010|.CH\b\u000e}!†#pIâÝ­ 2‚M\u001eJn]&5º½7õ¡\u0014Âj»\u001e¨>ÐV•(ÒO\u00023¸cb°6 ­/Ã\u0017!z.Fô%ã5D \u001eõ1\u001fð©ó¶Q¨‹’¹zò§dHLŒÑÜÊ-ð‡Y+ƒS|?­m\u000e\u001e¬V\bR†\u0019*!„ü>‚LÖkŠ\u001cï¬Ïµ{w) ‚ûiN\u001a\u001ep ”zÇüg–à§Âš\u0010\u0001\u0015j4\u0011* ‡q*’÷h\"Í¥©ã\u001eM¼öŠ\u001aþþ½·Z\u0006,¸R\u0007ÿD‰3\"µ³>\u001e˜åï\u0011‡GßºhgúaHüò¿‡E\u001cÐ\u001c\u001cü3Êx\u0004Ü¹\u000f¡ª¡àÃ'£ŒEˆÜÇ\u0003îÜQQ‡8œÅ€þç$ù\u001f ‚aaJHÉZ¹e{¼ßØv_g%\u001b¢Võ\n\n---\n\nTitle: Owais Warsi\nURL: https://linkedin.com/in/owais-warsi-6a71b5370\nPublished: 2026-03-29T06:44:48.000Z\nAuthor: Exa\nHighlights:\n# Owais Warsi\n\nWork from home at Startek India\n\nWork From Home at [Startek India](https://www.linkedin.com/company/aegis-global)\n\nLucknow, Uttar Pradesh, India (IN)\n\n## Experience\n\n### Work From Home at [Startek India](https://www.linkedin.com/company/aegis-global) (Current)\n\nDepartment: Other\n\nStartek India is a IT Services and IT Consulting company. Startek India employs 1,908 people (+6.9% YoY, +410 people) and has an annual revenue of INR9.4B. Headquartered in Mumbai, Maharashtra, India, operates in 18 countries (including South Africa, Argentina, Malaysia, Peru, and Sri Lanka).\n\n---\n\nTitle: Owais warsi\nURL: https://linkedin.com/in/owais-warsi-9087661b4\nPublished: 2026-04-15T10:30:02.000Z\nAuthor: Exa\nHighlights:\n# Owais warsi\n\nOperation officer at ALRAHIM STORE LIMITED\n\nOperation Officer at [ALRAHIM STORE LIMITED](https://www.linkedin.com/company/alrahim-store-limited)\n\nKarāchi, Sindh, Pakistan (PK)\n\n## Experience\n\n### Operation Officer at [ALRAHIM STORE LIMITED](https://www.linkedin.com/company/alrahim-store-limited) (Current)\n\nDepartment: Operations • Level: Specialist\n\nALRAHIM STORE LIMITED is a Retail company. ALRAHIM STORE LIMITED employs 1 person (+25.0% YoY). Headquartered in United Kingdom.\n\n## Skills\n\noperations officer\n\n---\n\nTitle: owais warsi\nURL: https://linkedin.com/in/owais-warsi-b2b87719a\nPublished: 2026-05-09T10:27:51.000Z\nAuthor: Exa\nHighlights:\n# owais warsi\n\nStudent at Eastern Michigan University\n\nDetroit Metropolitan Area (US)\n\n## Education\n\n### Bachelor of Science - BS, Biochemistry and Molecular Biology at [Eastern Michigan University](https://www.linkedin.com/school/eastern-michigan-university)\n\n2016 - 2022 (6 years) in Ypsilanti, Michigan, United States\n\nEastern Michigan University is a higher education institution. Eastern Michigan University is the second oldest public university in Michigan serving nearly 18,000 students. Eastern Michigan University employs 2,668 people (+2.5% YoY, +121 people) and has an annual revenue of $235.8M, founded in 1849. Headquartered in Ypsilanti, Michigan, United States, operates in 20 countries (including Romania, Canada, India, Serbia, and Saudi Arabia). Has $716.4K in total funding, with 2 prior funding rounds."
+    }
+  },
+  {
+    "timestamp": 1782294585906,
+    "conversationId": "conv-1782294320747",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "Provided information about Muhammad Owais Warsi, the software developer, based on the web search results."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "Provided information about Muhammad Owais Warsi, the software developer, based on the web search results."
+    }
+  },
+  {
+    "timestamp": 1782294613511,
+    "conversationId": "conv-1782294598645",
+    "cycle": 0,
+    "toolName": "custom__create_note",
+    "args": {
+      "id": "random-note-1",
+      "body": "This is a random note created just for you! Hope you're having a great day.",
+      "title": "A Random Note"
+    },
+    "kind": "ALLOW",
+    "matchedRuleId": "approval-create",
+    "executed": true,
+    "output": {
+      "result": "created note random-note-1"
+    }
+  },
+  {
+    "timestamp": 1782294614310,
+    "conversationId": "conv-1782294598645",
+    "cycle": 1,
+    "toolName": "custom__finish_task",
+    "args": {
+      "message": "I have created a random note titled \"A Random Note\" for you."
+    },
+    "kind": "ALLOW",
+    "executed": true,
+    "output": {
+      "result": "I have created a random note titled \"A Random Note\" for you."
+    }
+  }
+]

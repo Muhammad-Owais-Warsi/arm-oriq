@@ -5,10 +5,9 @@ import { MCP_SERVERS } from "../mcp/config";
 import { connectMcpServers } from "../mcp/client";
 import { discoverToolsFromMcp } from "../mcp/mcp-to-tool";
 
-import { readFileSync } from "node:fs";
-import { setPolicy } from "../policy/policy";
+import { watchPolicyFile } from "../policy/policy";
 
-function getLastAgentMessage(agent: Agent): string | undefined {
+export function getLastAgentMessage(agent: Agent): string | undefined {
     for (const state of [...agent.states].reverse()) {
         if (state.kind === "TEXT_RESPONSE") return state.message;
         if (state.kind === "END") return state.message ?? "Done.";
@@ -18,7 +17,7 @@ function getLastAgentMessage(agent: Agent): string | undefined {
     return undefined;
 }
 
-async function runTurn(
+export async function runTurn(
     agent: Agent,
     conversation: Conversation[],
     prompt: string,
@@ -34,34 +33,20 @@ async function runTurn(
     return agent.conversation;
 }
 
+export async function createAgent(apiKey: string): Promise<Agent> {
+    const clients = await connectMcpServers(MCP_SERVERS);
+    const tools = await discoverToolsFromMcp(clients);
+    console.log("discovered tools:", tools.map((t) => t.declaration.name));
+    watchPolicyFile();
+    return new Agent({ model: "gemini-3.1-flash-lite", apiKey, tools });
+}
+
 async function main() {
     const apiKey = process.env.API;
     if (!apiKey)
         throw new Error("Missing API env var. Set API before running.");
 
-    const clients = await connectMcpServers(MCP_SERVERS);
-    const tools = await discoverToolsFromMcp(clients);
-
-    console.log(
-        "Discovered tools:",
-        tools.map((t) => t.declaration.name),
-    );
-
-    const raw = readFileSync(
-        new URL("../policy/test.json", import.meta.url),
-        "utf-8",
-    );
-    const parsed = JSON.parse(raw);
-    setPolicy({
-        toolRules: parsed.toolRules ?? [],
-        fileRules: parsed.fileRules ?? [],
-    });
-
-    const agent = new Agent({
-        model: "gemini-3.1-flash-lite",
-        apiKey,
-        tools,
-    });
+    const agent = await createAgent(apiKey);
 
     let conversation: Conversation[] = [];
     const conversationId = `conv-${Date.now()}`;
@@ -104,4 +89,6 @@ async function main() {
     }
 }
 
-await main();
+if (import.meta.main) {
+    await main();
+}
